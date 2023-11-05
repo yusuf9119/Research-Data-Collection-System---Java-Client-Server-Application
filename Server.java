@@ -52,7 +52,7 @@ public class Server {
                 socket.close();
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
-            }
+           }
         }
     }
 }

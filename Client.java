@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) {
@@ -8,19 +9,33 @@ public class Client {
 
         try {
             Socket socket = new Socket(serverAddress, serverPort);
-
-            // Create an ObjectOutputStream to send data to the server
             ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
 
-            int userID = 123;
-            String postcode = "SW1A 1AA";
-            double co2Concentration = 400.5;
+            try (Scanner scanner = new Scanner(System.in)) {
+                while (true) {
+                    System.out.print("Enter User ID: ");
+                    int userID = scanner.nextInt();
 
-            // Send data to the server
-            objectOutput.writeInt(userID);
-            objectOutput.writeObject(postcode);
-            objectOutput.writeDouble(co2Concentration);
-            objectOutput.flush();
+                    System.out.print("Enter Postcode: ");
+                    String postcode = scanner.next();
+
+                    System.out.print("Enter CO2 Concentration (ppm): ");
+                    double co2Concentration = scanner.nextDouble();
+
+                    // Send user input data to the server
+                    objectOutput.writeInt(userID);
+                    objectOutput.writeObject(postcode);
+                    objectOutput.writeDouble(co2Concentration);
+                    objectOutput.flush();
+
+                    System.out.print("Do you want to enter more data? (yes/no): ");
+                    String moreData = scanner.next();
+
+                    if (!moreData.equalsIgnoreCase("yes")) {
+                        break; // Exit the loop if the user doesn't want to enter more data
+                    }
+                }
+            }
 
             // Close the client socket
             socket.close();
