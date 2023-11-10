@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Server {
     public static void main(String[] args) {
-        int port = 12345;
+        int port = 5235;
         List<ResearchData> dataStore = new ArrayList<>();
 
         try {
@@ -46,13 +46,14 @@ public class Server {
                 ResearchData researchData = new ResearchData(userID, postcode, co2Concentration);
                 dataStore.add(researchData);
 
-                System.out.println("Received data: User ID: " + userID + ", Postcode: " + postcode + ", CO2 Concentration: " + co2Concentration);
+                System.out.println("Received data: User ID: " + userID + ", Postcode: " + postcode
+                        + ", CO2 Concentration: " + co2Concentration);
 
                 // Close the client socket
                 socket.close();
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
-           }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Client {
     public static void main(String[] args) {
         String serverAddress = "localhost"; // Server's IP address or hostname
-        int serverPort = 12345; // Server's port
+        int serverPort = 5235; // Server's port
 
         try {
             Socket socket = new Socket(serverAddress, serverPort);
