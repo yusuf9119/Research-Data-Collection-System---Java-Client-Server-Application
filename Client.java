@@ -22,10 +22,11 @@ public class Client {
                     System.out.print("Enter CO2 Concentration (ppm): ");
                     double co2Concentration = scanner.nextDouble();
 
-                    // Send user input data to the server
-                    objectOutput.writeInt(userID);
-                    objectOutput.writeObject(postcode);
-                    objectOutput.writeDouble(co2Concentration);
+                    // Create ResearchData object
+                    ResearchData researchData = new ResearchData(userID, postcode, co2Concentration);
+
+                    // Send ResearchData object to the server
+                    objectOutput.writeObject(researchData);
                     objectOutput.flush();
 
                     System.out.print("Do you want to enter more data? (yes/no): ");
