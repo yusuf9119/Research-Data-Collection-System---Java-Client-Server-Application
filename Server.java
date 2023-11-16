@@ -13,6 +13,7 @@ public class Server {
         try {
             try (ServerSocket serverSocket = new ServerSocket(port)) {
                 System.out.println("Server is listening on port " + port);
+                System.out.println("Welcome to the Server! Send your data via the Client!");
 
                 while (true) {
                     Socket clientSocket = serverSocket.accept();
